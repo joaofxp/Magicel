@@ -22,7 +22,7 @@ public class GvrFPS : MonoBehaviour {
   private const float MS_PER_SEC = 1000f;
 
   private Text textField;
-  private float fps = 60;
+  private float fps = 90;
 
   public Camera cam;
 
