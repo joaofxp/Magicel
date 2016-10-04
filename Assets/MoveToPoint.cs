@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MoveToPoint : MonoBehaviour
 {
-
+    /*
+    I am developing with google cardboard, which if I build to webGL, the game does not work, so here is my project folder, with 3 builds for: WebGL (I tested here, does not work because of vr), PcMaxLinux (need to test) and apk (you need a google cardboard to test), please, open my project in unity and try to play from there too, thanks.
+    */
     Camera camera;
     public static Transform playerPosition;
     public int WaitTime;
     bool coroutineIsRunning;
     public GameObject[] points;
+    public GameObject potionButton;
+    public GameObject potionComplete;
+    public Text potionText;
+    public GameObject potionSell;
+    public GameObject endText;
 
     void Awake()
     {
@@ -41,6 +49,18 @@ public class MoveToPoint : MonoBehaviour
                 {
                     ingredient.SetActive(false);
                 }
+                potionButton.SetActive(false);
+                potionComplete.SetActive(true);
+                potionText.text = "1/1";
+                potionSell.SetActive(true);
+            }
+            else if (hit.transform.tag == "Sell")
+            {
+                potionComplete.SetActive(false);
+            }
+            else if (hit.transform.tag == "End")
+            {
+                endText.SetActive(true);
             }
         }
     }
@@ -59,6 +79,7 @@ public class MoveToPoint : MonoBehaviour
         if (count == 3)
         {
             Debug.Log("SHOWBUTTON");
+            potionButton.SetActive(true);
         }
     }
 
