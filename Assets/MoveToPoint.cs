@@ -57,9 +57,6 @@ public class MoveToPoint : MonoBehaviour
             else if (hit.transform.tag == "Sell")
             {
                 potionComplete.SetActive(false);
-            }
-            else if (hit.transform.tag == "End")
-            {
                 endText.SetActive(true);
             }
         }
