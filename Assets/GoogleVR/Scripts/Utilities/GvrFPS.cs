@@ -22,7 +22,7 @@ public class GvrFPS : MonoBehaviour {
   private const float MS_PER_SEC = 1000f;
 
   private Text textField;
-  private float fps = 90;
+  private float fps = 60;
 
   public Camera cam;
 
@@ -42,8 +42,9 @@ public class GvrFPS : MonoBehaviour {
   }
 
   void LateUpdate() {
-    float interp = Time.deltaTime / (0.5f + Time.deltaTime);
-    float currentFPS = 1.0f / Time.deltaTime;
+    float deltaTime = Time.unscaledDeltaTime;
+    float interp = deltaTime / (0.5f + deltaTime);
+    float currentFPS = 1.0f / deltaTime;
     fps = Mathf.Lerp(fps, currentFPS, interp);
     float msf = MS_PER_SEC / fps;
     textField.text = string.Format(DISPLAY_TEXT_FORMAT,
