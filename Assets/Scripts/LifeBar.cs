@@ -7,7 +7,7 @@ public class LifeBar : MonoBehaviour {
 
     public void FixedUpdate()
     {
-        transform.LookAt(MoveToPoint.playerPosition);
+        //transform.LookAt(MoveToPoint.playerPosition);
     }
 
     public IEnumerator ShowLoader()
