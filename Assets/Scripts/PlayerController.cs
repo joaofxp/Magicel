@@ -2,13 +2,17 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
+    public static PlayerController singleton;
     public Camera mainCamera;
+    public GameObject bookImageGameObject;
 
     void Awake()
     {
+        singleton = this;
         mainCamera = GetComponent<Camera>();
     }
 
@@ -21,18 +25,23 @@ public class PlayerController : MonoBehaviour {
 
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.JoystickButton0))
         {
-            //MuteAudio
-            if (hit.transform.tag == "ButtonMute" && Input.GetKeyDown(KeyCode.JoystickButton0))
+            switch (hit.transform.tag)
             {
-                AudioMute.singleton.AudioToggle();
-            }
-            //Book
-            if (hit.transform.tag == "Book")
-            {
-                //Call Function To Open Book
-                Debug.Log("BOOK!");
+                case "ButtonMute":
+                    AudioMute.singleton.AudioToggle();
+                    break;
+                case "BookOpen":
+                    bookImageGameObject.SetActive(true);
+                    BookOpen book = hit.transform.GetComponent<BookOpen>();
+                    BookImage.singleton.AbrirLivro(book.bookSprite, book.bookTextIngredientes, book.bookTextPreparo);
+                    break;
+                case "BookClose":
+                    bookImageGameObject.SetActive(false);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -62,5 +71,10 @@ public class PlayerController : MonoBehaviour {
         //    endText.SetActive(true);
         //}
         //}
+        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(kcode))
+                Debug.Log("KeyCode down: " + kcode);
+        }
     }
 }
