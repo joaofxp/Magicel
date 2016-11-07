@@ -15,29 +15,29 @@ public class PlayerController : MonoBehaviour {
     {
         singleton = this;
         mainCamera = GetComponent<Camera>();
-        Cursor.visible = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
-        {
-            Debug.Log("Key");
-        }
-
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.JoystickButton4))
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.Space))
         {
             switch (hit.transform.tag)
             {
+                case "Play":
+                    hit.transform.gameObject.SetActive(false);
+                    break;
                 case "ButtonMute":
                     AudioMute.singleton.AudioToggle();
+                    break;
+                case "ButtonExit":
+                    Application.Quit();
                     break;
                 case "BookOpen":
                     bookImageGameObject.SetActive(true);
                     BookOpen book = hit.transform.GetComponent<BookOpen>();
-                    BookImage.singleton.AbrirLivro(book.bookSprite, book.bookTextIngredientes, book.bookTextPreparo);
+                    BookImage.singleton.AbrirLivro(book.bookSprite, book.bookTextIngredientes.text, book.bookTextPreparo.text);
                     break;
                 case "BookClose":
                     bookImageGameObject.SetActive(false);

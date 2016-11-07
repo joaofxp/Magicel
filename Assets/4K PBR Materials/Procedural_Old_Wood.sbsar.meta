@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4ba7565ca48d94b4bb91fd6eda2ea38e
-timeCreated: 1475897285
+timeCreated: 1478524991
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -16,14 +16,14 @@ SubstanceImporter:
     inputs:
     - name: Wood_Color
       value:
-        scalar[0]: 0.5
-        scalar[1]: 0.35844788
-        scalar[2]: 0.21691176
+        scalar[0]: 0.64705884
+        scalar[1]: 0.48290595
+        scalar[2]: 0.31877163
         scalar[3]: 1
         texture: {instanceID: 0}
     - name: $randomseed
       value:
-        scalar[0]: 0
+        scalar[0]: 8533
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -205,17 +205,17 @@ SubstanceImporter:
       material: {instanceID: 0}
       baseUID: 679316570
     - shaderProp:
-        name: _MetallicGlossMap
+        name: _ParallaxMap
       material: {instanceID: 0}
-      baseUID: 679316574
+      baseUID: 729247976
     - shaderProp:
         name: _OcclusionMap
       material: {instanceID: 0}
       baseUID: 729247933
     - shaderProp:
-        name: _ParallaxMap
+        name: _MetallicGlossMap
       material: {instanceID: 0}
-      baseUID: 729247976
+      baseUID: 679316574
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

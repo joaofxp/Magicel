@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BookOpen : MonoBehaviour {
 
     public Sprite bookSprite;
-    public string bookTextIngredientes;
-    public string bookTextPreparo;
+    public Text bookTextIngredientes;
+    public Text bookTextPreparo;
 }
