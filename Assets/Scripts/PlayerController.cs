@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour {
     public static PlayerController singleton;
     public Camera mainCamera;
     public GameObject bookImageGameObject;
+    public TextMesh infoText;
 
     void Awake()
     {
         singleton = this;
         mainCamera = GetComponent<Camera>();
+        Cursor.visible = false;
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.JoystickButton0))
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.JoystickButton4))
         {
             switch (hit.transform.tag)
             {
@@ -74,7 +76,9 @@ public class PlayerController : MonoBehaviour {
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(kcode))
-                Debug.Log("KeyCode down: " + kcode);
+            {
+                infoText.text = "KeyCode."+kcode.ToString();
+            }
         }
     }
 }
