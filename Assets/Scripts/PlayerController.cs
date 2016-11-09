@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     {
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.JoystickButton4))
+        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.Space))
         {
             switch (hit.transform.tag)
             {

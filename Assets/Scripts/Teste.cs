@@ -3,17 +3,26 @@ using System.Collections;
 
 public class Teste : MonoBehaviour {
 
+    Shader mainShader;
+    Shader outlineShader;
+    
+    void Awake()
+    {
+        mainShader = GetComponent<Renderer>().material.shader;
+        outlineShader = Shader.Find("Custom/NewImageEffectShader");
+    }
     // Update is called once per frame
 	void Update () {
-        //transform.Rotate(new Vector3 (Input.GetAxis("Vertical") * 100 * Time.deltaTime,0,0));
-        GetComponent<Rigidbody>().AddForce(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime, Input.GetAxisRaw("Fire1") * Time.deltaTime * -3, Input.GetAxis("Vertical") * Time.deltaTime), ForceMode.Impulse);
-        if (Input.GetAxisRaw("Fire1") != 0)
+        GetComponent<Rigidbody>().AddForce(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime, 0, Input.GetAxis("Vertical") * Time.deltaTime),ForceMode.Impulse);
+        if(Input.GetAxisRaw("Fire2") == 0)
         {
-            //Debug.Log("VERTICAL");
+            GetComponent<Rigidbody>().AddForce(0,Input.GetAxisRaw("Fire1") * Time.deltaTime * 5,0,ForceMode.Impulse);
+            GetComponent<Renderer>().material.shader = mainShader;
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton5))
+        else
         {
-            print("Keyx");
+            GetComponent<Renderer>().material.shader = outlineShader;
+            GetComponent<Rigidbody>().AddForce(0,Input.GetAxisRaw("Fire2") * Time.deltaTime * -5,0,ForceMode.Impulse);
         }
 	}
 }
