@@ -42,6 +42,36 @@ public class PlayerController : MonoBehaviour {
                 case "BookClose":
                     bookImageGameObject.SetActive(false);
                     break;
+                case "Ingrediente":
+                    hit.transform.GetComponent<Ingrediente>().IngredienteSelecionado();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            switch (hit.transform.tag)
+            {
+                case "Play":
+                    
+                    break;
+                case "ButtonMute":
+                    
+                    break;
+                case "ButtonExit":
+                    
+                    break;
+                case "BookOpen":
+
+                    break;
+                case "BookClose":
+                    
+                    break;
+                case "Ingrediente":
+                    hit.transform.GetComponent<Ingrediente>().m_detectado = true;
+                    break;
                 default:
                     break;
             }
