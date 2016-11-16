@@ -9,6 +9,7 @@ public class Ingrediente : MonoBehaviour {
     bool m_selecionado;
     public bool m_detectado;
     Rigidbody m_rigidbody;
+    public float ingredienteVelocidade = 50;
 
     void Awake()
     {
@@ -22,10 +23,11 @@ public class Ingrediente : MonoBehaviour {
     {
         if (Input.GetAxis("Vertical") != 0)
         {
-            m_rigidbody.AddForce(0, 0, Input.GetAxis("Vertical") * Time.deltaTime,ForceMode.VelocityChange);
+            //m_rigidbody.AddForce(0, 0, Input.GetAxis("Vertical") * Time.deltaTime,ForceMode.VelocityChange);
+            m_rigidbody.velocity = new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * ingredienteVelocidade);
         }
 
-        Debug.Log(m_detectado);
+        
         if (m_detectado)
         {
             m_detectado = false;

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public Camera mainCamera;
     public GameObject bookImageGameObject;
     public TextMesh infoText;
+    public GameObject laserSelecionadoPrefab;
 
     void Awake()
     {
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour {
                     break;
                 case "Ingrediente":
                     hit.transform.GetComponent<Ingrediente>().IngredienteSelecionado();
+                    GameObject laserSelecionado = Instantiate(laserSelecionadoPrefab, Vector3.zero, Quaternion.LookRotation(new Vector3 (0,-1,0))) as GameObject;
+                    laserSelecionado.transform.SetParent(hit.transform,false);
                     break;
                 default:
                     break;
