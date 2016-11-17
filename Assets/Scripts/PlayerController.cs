@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update()
-    {
+    {        
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.Space))
@@ -45,8 +45,13 @@ public class PlayerController : MonoBehaviour {
                     break;
                 case "Ingrediente":
                     hit.transform.GetComponent<Ingrediente>().IngredienteSelecionado();
-                    GameObject laserSelecionado = Instantiate(laserSelecionadoPrefab, Vector3.zero, Quaternion.LookRotation(new Vector3 (0,-1,0))) as GameObject;
-                    laserSelecionado.transform.SetParent(hit.transform,false);
+                    if (hit.transform.childCount == 0)
+                    {
+                        GameObject laserSelecionado = Instantiate(laserSelecionadoPrefab, hit.transform, false) as GameObject;
+                        Quaternion target = new Quaternion();
+                        target.SetLookRotation(Vector3.down);
+                        laserSelecionado.transform.rotation = target;
+                    }
                     break;
                 default:
                     break;
@@ -80,32 +85,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        //if (Physics.Raycast(ray, out hit))
-        //{
-        //if (hit.transform.tag == "Teleport" && !coroutineIsRunning)
-        //{
-        //    StartCoroutine(ChooseIngredient());
-        //    StartCoroutine(transform.GetComponentInChildren<LifeBar>().ShowLoader());
-
-        //}
-        //else if (hit.transform.tag == "Point")
-        //{
-        //    Debug.Log(hit.transform.tag);
-        //    foreach (GameObject ingredient in points)
-        //    {
-        //        ingredient.SetActive(false);
-        //    }
-        //    potionButton.SetActive(false);
-        //    potionComplete.SetActive(true);
-        //    potionText.text = "1/1";
-        //    potionSell.SetActive(true);
-        //}
-        //else if (hit.transform.tag == "Sell")
-        //{
-        //    potionComplete.SetActive(false);
-        //    endText.SetActive(true);
-        //}
-        //}
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(kcode))
