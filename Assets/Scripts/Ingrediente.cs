@@ -29,9 +29,11 @@ public class Ingrediente : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetAxis("Vertical") != 0 && m_selecionado)
+        if (Input.GetAxisRaw("Vertical") != 0 && m_selecionado)
         {
-            m_rigidbody.velocity = new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * ingredienteVelocidade);
+            //m_rigidbody.velocity = new Vector3(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * ingredienteVelocidade);
+            //transform.position = transform.position + Camera.main.transform.forward * Time.deltaTime * Input.GetAxis("Vertical");
+            m_rigidbody.position = transform.position + Camera.main.transform.forward * Time.deltaTime * Input.GetAxis("Vertical");
         }
     }
 
@@ -100,12 +102,13 @@ public class Ingrediente : MonoBehaviour
             m_renderer.material.color -= new Color(0, 0, 0, 0.25f);
             yield return new WaitForSeconds(0.25f * Time.deltaTime);
         }
+        transform.rotation = rotation;
         transform.position = posInicial;
         yield return new WaitForSeconds(1);
         while (m_renderer.material.color.a <= 1)
         {
             m_renderer.material.color += new Color(0, 0, 0, 0.1f);
-            yield return new WaitForSeconds(0.25f * Time.deltaTime);
+            yield return new WaitForSeconds(0.5f * Time.deltaTime);
         }
         //m_renderer.material.color += new Color(0, 0, 0, 1);
         yield return null;
