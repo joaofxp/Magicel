@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update()
-    {        
+    {
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && Input.GetKeyDown(KeyCode.Space))
+        if (Physics.Raycast(ray, out hit,100, 1 << 8) && Input.GetKeyDown(KeyCode.Space))
         {
             switch (hit.transform.tag)
             {
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 100, 1 << 8))
         {
             switch (hit.transform.tag)
             {

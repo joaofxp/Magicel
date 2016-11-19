@@ -27,7 +27,7 @@ public class CaldeiraoScript : MonoBehaviour
 
             if (pocao.pocaoIngredientes.Count == 3)
             {
-                PocaoDatabase.singleton.PocaoChecar(pocao);
+                PocaoDatabase.singleton.PocaoFazer(pocao);
                 pocao.pocaoIngredientes.Clear();
                 //CHECAR SE RETORNAR NULO OU NAO OU VER SE FAZ UM PREFAB PRA QUANDO DER FALHA
             }

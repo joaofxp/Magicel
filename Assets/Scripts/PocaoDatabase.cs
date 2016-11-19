@@ -13,7 +13,7 @@ public class PocaoDatabase : MonoBehaviour {
     }
 
     //Verificar se os ingredientes da lista de ingredientes é possivel fazer alguma poção
-    public GameObject PocaoChecar(Pocao pocao)
+    public void PocaoFazer(Pocao pocao)
     {
         foreach (Pocao m_pocao in pocoes)
         {
@@ -31,9 +31,13 @@ public class PocaoDatabase : MonoBehaviour {
             {
                 //return m_pocao.pocaoPrefab;
                 print("FAZERPOCAO");
+                return;
+            } else
+            {
+                return;
             }
         }
-        return null;
+        Debug.Log("FIM");
     }
 }
 
