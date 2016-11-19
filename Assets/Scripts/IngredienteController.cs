@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Ingrediente : MonoBehaviour
+public class IngredienteController : MonoBehaviour
 {
 
-    public static Ingrediente singleton;
+    public static IngredienteController singleton;
     Renderer m_renderer;
     Color m_mainColor;
     bool m_selecionado;

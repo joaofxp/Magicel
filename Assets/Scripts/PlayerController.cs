@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
                     bookImageGameObject.SetActive(false);
                     break;
                 case "Ingrediente":
-                    hit.transform.GetComponent<Ingrediente>().IngredienteSelecionado();
+                    hit.transform.GetComponent<IngredienteController>().IngredienteSelecionado();
                     if (hit.transform.childCount == 0)
                     {
                         GameObject laserSelecionado = Instantiate(laserSelecionadoPrefab, hit.transform, false) as GameObject;
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour {
                     
                     break;
                 case "Ingrediente":
-                    hit.transform.GetComponent<Ingrediente>().m_detectado = true;
+                    hit.transform.GetComponent<IngredienteController>().m_detectado = true;
                     break;
                 default:
                     break;
