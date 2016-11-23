@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 public class CaldeiraoScript : MonoBehaviour
 {
+    public static CaldeiraoScript singleton;
     private int listaIngredientesLimite;
     public Pocao pocao;
+
+    void Awake()
+    {
+        singleton = this;
+    }
 
     void OnCollisionEnter(Collision collision)
     {

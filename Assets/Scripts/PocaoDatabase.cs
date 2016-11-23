@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PocaoDatabase : MonoBehaviour {
 
     public static PocaoDatabase singleton;
+    public Transform pocaoSpawn;
     public Pocao[] pocoes;
 
     void Awake()
@@ -24,12 +25,13 @@ public class PocaoDatabase : MonoBehaviour {
                 if (m_pocao.pocaoIngredientes [i].ingredientePrefab.name == pocao.pocaoIngredientes[i].ingredientePrefab.name)
                 {
                     count++;
-                    print("IGUAL");
+                    //print("IGUAL");
                 }
             }
             if (count == 3)
             {
-                //return m_pocao.pocaoPrefab;
+                Instantiate(m_pocao.pocaoPrefab, pocaoSpawn.position, m_pocao.pocaoPrefab.transform.rotation);                
+                //m_pocao.pocaoPrefab;
                 print("FAZERPOCAO");
                 return;
             } else
@@ -37,7 +39,29 @@ public class PocaoDatabase : MonoBehaviour {
                 return;
             }
         }
-        Debug.Log("FIM");
+        ParticleSystemExtension.SetEmissionRate(CaldeiraoScript.singleton.GetComponent<ParticleSystem>(), 5);
+    }
+}
+
+public static class ParticleSystemExtension
+{
+    public static void EnableEmission(this ParticleSystem particleSystem, bool enabled)
+    {
+        var emission = particleSystem.emission;
+        emission.enabled = enabled;
+    }
+
+    public static float GetEmissionRate(this ParticleSystem particleSystem)
+    {
+        return particleSystem.emission.rate.constantMax;
+    }
+
+    public static void SetEmissionRate(this ParticleSystem particleSystem, float emissionRate)
+    {
+        var emission = particleSystem.emission;
+        var rate = emission.rate;
+        rate.constantMax = emissionRate;
+        emission.rate = rate;
     }
 }
 

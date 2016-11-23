@@ -95,6 +95,11 @@ public class IngredienteController : MonoBehaviour
     //COROUTINES
     public IEnumerator IngredienteNoCaldeirao()
     {
+        if (transform.parent != null)
+        {
+            SelecaoDesativar();
+        }
+        ParticleSystemExtension.SetEmissionRate(CaldeiraoScript.singleton.GetComponent<ParticleSystem>(), ParticleSystemExtension.GetEmissionRate(CaldeiraoScript.singleton.GetComponent<ParticleSystem>()) + 20f);
         yield return new WaitForSeconds(2);
         Renderer m_renderer = GetComponent<Renderer>();
         while (m_renderer.material.color.a >= 0)
