@@ -41,9 +41,10 @@ public class IngredienteController : MonoBehaviour
     {
         if (m_detectado)
         {
+            print(m_rigidbody.velocity);
             Invoke("DesativarDeteccao", 1);
         }
-        else if (m_selecionado && Input.GetKeyDown(KeyCode.Space))
+        else if (m_selecionado && Input.GetButtonDown("Submit"))
         {
             SelecaoDesativar();
         }
@@ -51,6 +52,7 @@ public class IngredienteController : MonoBehaviour
         if (travarRotacao)
         {
             transform.rotation = rotation;
+            m_rigidbody.velocity = Vector3.zero;
         }
     }
 
